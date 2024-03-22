@@ -49,6 +49,10 @@ h1 {
     justify-items: center;
 }
 
+.shape:hover {
+    cursor: pointer;
+}
+
 button {
     border-radius: 5px;
     background-color: #f90;
@@ -80,8 +84,9 @@ button:hover {
 
 #shapeInfo {
     color: #fff;
-    font-weight: 600;
+    font-weight: 500;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
+    
