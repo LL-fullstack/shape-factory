@@ -40,13 +40,14 @@ h1 {
 #shapeGrid {
     background-color: #535254;
     width: 520px;
-    height: 400px;
+    height: 330px;
     border-radius: 5px;
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 10px;
     justify-items: center;
+    align-content: start;
 }
 
 .shape:hover {
