@@ -24,6 +24,7 @@ let isCircle = true;
 let currentColorIndex = 0;
 let currentShapeIndex = 0;
 const colors = ['Blue', 'Purple', 'Green', 'Orange', 'Pink'];
+const colorHexCode = ['#09f', '#90f', '#9f0', '#f90', '#f09'];
 const shapes = ['Circle','Square'];
 
 function toggleShape() {
@@ -52,7 +53,7 @@ function createShape() {
     const shapeDiv = document.createElement('div');
     const shapeCSSStyle = shapeType.toLowerCase();
     shapeDiv.className = `shape ${shapeCSSStyle}`; 
-    shapeDiv.style.backgroundColor = color;
+    shapeDiv.style.backgroundColor = colorHexCode[currentColorIndex];
     shapeDiv.onclick = function() {
         const shapeInfo = document.getElementById('shapeInfo');
         shapeInfo.textContent = shape.getInfo(position);
