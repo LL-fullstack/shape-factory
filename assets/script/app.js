@@ -21,43 +21,37 @@ class Shape {
 
 const shapeList = [];
 let isCircle = true;
-let isDefaultColor = true;
+let currentColorIndex = 0;
+const colors = ['Blue', 'Purple', 'Green', 'Orange', 'Pink'];
 
 function toggleShape() {
     const shapeOption = document.getElementById('shapeOption');
     isCircle = !isCircle;
-    shapeOption.textContent = if (isCircle) {
-        shapeOption.textContent = 'Circle';
-    } else {
-        shapeOption.textContent = 'Square';
-    }
+    shapeOption.textContent = isCircle ? 'Circle' : 'Square';
 }
 
 function toggleColor() {
     const colorOption = document.getElementById('colorOption');
-    const colors = ['#09f', '#90f', '#9f0', '#f90', '#f09'];
-    if (isDefaultColor) {
-        colorOption.textContent = 'Blue / Purple / Green / Orange / Pink';
-    } else {
-        colorOption.textContent = colors[Math.floor(Math.random() * colors.length)];
-    }
-    isDefaultColor = !isDefaultColor;
+    colorOption.textContent = colors[currentColorIndex];
+    currentColorIndex = (currentColorIndex + 1) % colors.length;
 }
 
 function createShapes() {
-    const shapeType = isCircle || 'square';
-    const color = document.getElementById(colorOption).textContent;
+    const shapeType = isCircle ? 'circle' : 'square';
+    const color = document.getElementById('colorOption').textContent;
     const shapeGrid = document.getElementById('shapeGrid');
-    const shape = new shape(shapeType, color);
+    const shape = new Shape(shapeType, color);
     shapeList.push(shape);
 
     const shapeDiv = document.createElement('div');
-    shapeDiv.className = shapeType;
+    shapeDiv.className = `shape ${shapeType}`; 
     shapeDiv.style.backgroundColor = color;
     shapeDiv.onclick = function() {
-        const position = document.querySelectorAll('#shapeGrid div').length + 1;
+        const position = Array.from(shapeGrid.children).indexOf(shapeDiv) + 1;
         console.log(shape.getInfo(position));
     };
 
     shapeGrid.appendChild(shapeDiv);
 }
+
+
