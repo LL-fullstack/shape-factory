@@ -40,7 +40,7 @@ h1 {
 #shapeGrid {
     background-color: #535254;
     width: 520px;
-    height: 500px;
+    height: 400px;
     border-radius: 5px;
     padding: 10px;
     display: grid;
@@ -67,7 +67,7 @@ button:hover {
     cursor: pointer;
 }
 
-.shape {
+.circle {
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -78,4 +78,10 @@ button:hover {
     height: 70px;
 }
 
+#shapeInfo {
+    color: #fff;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 

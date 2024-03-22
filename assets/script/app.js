@@ -2,55 +2,61 @@
 
 class Shape {
     constructor(name, color) {
-        this._name = name;
-        this._color = color;
-    }
+        let _name = name;
+        let _color = color;
 
-    get name() {
-        return this._name;
-    }
+        this.getName = function() {
+            return _name;
+        }
 
-    get color() {
-        return this._color;
-    }
+        this.getColor = function() {
+            return _color;
+        }
+}
 
     getInfo(position) {
-        return `Unit ${position}: ${this._color} ${this._name}`;
+        return `Unit ${position}: ${this.getColor().toLowerCase()} ${this.getName().toLowerCase()}`;
     }
 }
 
 const shapeList = [];
 let isCircle = true;
 let currentColorIndex = 0;
+let currentShapeIndex = 0;
 const colors = ['Blue', 'Purple', 'Green', 'Orange', 'Pink'];
+const shapes = ['Circle','Square'];
 
 function toggleShape() {
     const shapeOption = document.getElementById('shapeOption');
-    isCircle = !isCircle;
-    shapeOption.textContent = isCircle ? 'Circle' : 'Square';
+    currentShapeIndex = (currentShapeIndex + 1) % shapes.length;
+    shapeOption.textContent = shapes[currentShapeIndex];
 }
 
 function toggleColor() {
     const colorOption = document.getElementById('colorOption');
-    colorOption.textContent = colors[currentColorIndex];
     currentColorIndex = (currentColorIndex + 1) % colors.length;
+    colorOption.textContent = colors[currentColorIndex];
 }
 
-function createShapes() {
-    const shapeType = isCircle ? 'circle' : 'square';
+function createShape() {
+    if(shapeList.length > 23) {
+       return;
+    }
+    const shapeType = document.getElementById('shapeOption').textContent;
     const color = document.getElementById('colorOption').textContent;
     const shapeGrid = document.getElementById('shapeGrid');
     const shape = new Shape(shapeType, color);
+    const position = shapeList.length + 1;
     shapeList.push(shape);
 
     const shapeDiv = document.createElement('div');
-    shapeDiv.className = `shape ${shapeType}`; 
+    const shapeCSSStyle = shapeType.toLowerCase();
+    shapeDiv.className = `shape ${shapeCSSStyle}`; 
     shapeDiv.style.backgroundColor = color;
     shapeDiv.onclick = function() {
-        const position = Array.from(shapeGrid.children).indexOf(shapeDiv) + 1;
-        console.log(shape.getInfo(position));
+        const shapeInfo = document.getElementById('shapeInfo');
+        shapeInfo.textContent = shape.getInfo(position);
     };
-
     shapeGrid.appendChild(shapeDiv);
 }
 
